@@ -1,5 +1,7 @@
 using FireOps.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using FireOps.Domain.Interfaces;
+using FireOps.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<FireOpsDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("FireOpsDatabase")));
+
+builder.Services.AddScoped<IIncidentRepository, IncidentRepository>();
 
 
 builder.Services.AddControllers();
