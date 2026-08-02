@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="../IncidentManagement.Core/FireOps.Core.csproj" Id="27cf53f3-ff7a-4dad-aff0-3ff44698ced9" />
-  <Project Path="../IncidentManagement.Infrastructure/FireOps.Infrastructure.csproj" Id="137f6c4a-d9fa-457a-8d2c-fe5acd12e818" />
-  <Project Path="../IncidentManagement.Tests/FireOps.Tests.csproj" Id="9da1f786-b2a6-49a2-b2be-dcebcaf62610" />
+  <Project Path="../FireOps.Domain/FireOps.Domain.csproj" />
+  <Project Path="../FireOps.Infrastructure/FireOps.Infrastructure.csproj" />
+  <Project Path="../FireOps.Tests/FireOps.Tests.csproj" />
   <Project Path="FireOps.API.csproj" />
 </Solution>

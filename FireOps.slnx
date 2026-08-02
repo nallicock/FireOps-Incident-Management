@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FireOps.API/FireOps.API.csproj" />
+  <Project Path="FireOps.Domain/FireOps.Domain.csproj" />
+  <Project Path="FireOps.Infrastructure/FireOps.Infrastructure.csproj" />
+  <Project Path="FireOps.Tests/FireOps.Tests.csproj" />
+</Solution>

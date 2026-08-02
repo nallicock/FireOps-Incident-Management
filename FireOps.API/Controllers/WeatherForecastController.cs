@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace FirefighterIncidentManagement.API.Controllers
+namespace FireOps.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

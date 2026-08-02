@@ -1,4 +1,4 @@
-﻿namespace IncidentManagement.Tests
+﻿namespace FireOps.Tests
 {
     public class UnitTest1
     {
