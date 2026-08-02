@@ -11,14 +11,4 @@ namespace FireOps.Domain.Enums
         High = 3,
         Critical = 4
     }
-
-    public enum IncidentStatus
-    {
-        New = 1,
-        Assigned = 2,
-        EnRoute = 3,
-        OnScene = 4,
-        Resolved = 5,
-        Closed = 6
-    }
 }
