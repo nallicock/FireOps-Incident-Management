@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using FireOps.Domain.Interfaces;
 using FireOps.Infrastructure.Repositories;
 using FireOps.Infrastructure.Services;
+using FireOps.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

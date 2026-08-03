@@ -1,6 +1,7 @@
 ﻿using FireOps.Domain.Interfaces;
 using FireOps.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using FireOps.API.DTOs;
 
 namespace FireOps.API.Controllers
 {
@@ -25,13 +26,27 @@ namespace FireOps.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Incident incident)
+        public async Task<IActionResult> Create(CreateIncidentRequest request)
         {
+            var incident = new Incident
+            {
+                Title = request.Title,
+                Description = request.Description
+            };
+
             var createdIncident = await _incidentService.CreateAsync(incident);
+
+            var response = new IncidentResponse
+            {
+                Id = createdIncident.Id,
+                Title = createdIncident.Title,
+                Description = createdIncident.Description
+            };
+
             return CreatedAtAction(
                 nameof(GetById),
-                new { id = createdIncident.Id },
-                createdIncident);
+                new { id = response.Id },
+                response);
         }
 
         [HttpGet("{id}")]
