@@ -15,6 +15,7 @@ namespace FireOps.API.Controllers
         }
 
         //GET
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var incidents = await _incidentService.GetAllIncsAsync();
