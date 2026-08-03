@@ -44,5 +44,27 @@ namespace FireOps.API.Controllers
 
             return Ok(incident);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Incident incident)
+        {
+            var updated = await _incidentService.UpdateAsync(id, incident);
+
+            if (!updated)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _incidentService.DeleteAsync(id);
+
+            if (!deleted)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }

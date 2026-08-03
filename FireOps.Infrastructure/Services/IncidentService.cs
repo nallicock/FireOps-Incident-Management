@@ -33,14 +33,31 @@ namespace FireOps.Infrastructure.Services
             return incident;
         }
 
-        public async Task UpdateAsync(Incident incident)
+        public async Task<bool> UpdateAsync(int id, Incident incident)
         {
-            await _repository.UpdateAsync(incident);
+            var existingIncident = await _repository.GetByIdAsync(id);
+
+            if (existingIncident == null)
+                return false;
+
+            existingIncident.Title = incident.Title;
+            existingIncident.Description = incident.Description;
+            
+            await _repository.UpdateAsync(existingIncident);
+
+            return true;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
+            var incident = await _repository.GetByIdAsync(id);
+
+            if (incident == null)
+                return false;
+
             await _repository.DeleteAsync(id);
+
+            return true;
         }
     }
 }

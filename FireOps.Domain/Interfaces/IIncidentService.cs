@@ -10,7 +10,8 @@ namespace FireOps.Domain.Interfaces
         Task<IEnumerable<Incident>> GetAllIncsAsync();
         Task<Incident?> GetByIdAsync(int id);
         Task<Incident> CreateAsync(Incident incident);
-        Task UpdateAsync(Incident incident);
-        Task DeleteAsync(int id);
+        Task<bool> UpdateAsync(int id, Incident incident);
+        Task<bool> DeleteAsync(int id);
+
     }
 }
