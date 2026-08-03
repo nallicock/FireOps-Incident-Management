@@ -38,7 +38,7 @@ namespace FireOps.Infrastructure.Services
             await _repository.UpdateAsync(incident);
         }
 
-        public async Task DeleteSync(int id)
+        public async Task DeleteAsync(int id)
         {
             await _repository.DeleteAsync(id);
         }
