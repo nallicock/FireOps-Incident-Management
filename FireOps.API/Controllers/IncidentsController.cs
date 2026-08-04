@@ -2,6 +2,7 @@
 using FireOps.API.DTOs;
 using FireOps.Domain.Entities;
 using FireOps.Domain.Interfaces;
+using FireOps.Domain.Enums;
 using FireOps.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -39,7 +40,14 @@ namespace FireOps.API.Controllers
             var incident = new Incident
             {
                 Title = request.Title,
-                Description = request.Description
+                Description = request.Description,
+                Address = request.Address,
+                City = request.City,
+                PostalCode = request.PostalCode,
+                Priority = request.Priority,
+                CreatedAt = DateTime.UtcNow,
+                Status = request.Status,
+                IncidentNumber = $"INC{DateTime.UtcNow:yyyyMMddHHmmss}"
             };
 
             _logger.LogInformation("Creating incident '{Title}'.", request.Title);

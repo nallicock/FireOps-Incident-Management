@@ -11,6 +11,9 @@ namespace FireOps.Domain.Entities
         public string IncidentNumber { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Description {  get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string PostalCode { get; set; } = string.Empty;
         public IncidentPriority Priority { get; set; }
         public IncidentStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
