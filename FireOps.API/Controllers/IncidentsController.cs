@@ -1,7 +1,10 @@
-﻿using FireOps.Domain.Interfaces;
-using FireOps.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Core;
 using FireOps.API.DTOs;
+using FireOps.Domain.Entities;
+using FireOps.Domain.Interfaces;
+using FireOps.Infrastructure.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace FireOps.API.Controllers
 {
@@ -10,16 +13,21 @@ namespace FireOps.API.Controllers
     public class IncidentsController : ControllerBase
     {
         private readonly IIncidentService _incidentService;
-
-        public IncidentsController(IIncidentService incidentService)
+        private readonly ILogger<IncidentsController> _logger;
+        public IncidentsController(
+            IIncidentService incidentService, 
+            ILogger<IncidentsController> logger)
         {
             _incidentService = incidentService;
+            _logger = logger;
         }
 
         //GET
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation("Retrieving all incidents.");
+
             var incidents = await _incidentService.GetAllIncsAsync();
 
             return Ok(incidents);
@@ -33,6 +41,8 @@ namespace FireOps.API.Controllers
                 Title = request.Title,
                 Description = request.Description
             };
+
+            _logger.LogInformation("Creating incident '{Title}'.", request.Title);
 
             var createdIncident = await _incidentService.CreateAsync(incident);
 
@@ -52,6 +62,8 @@ namespace FireOps.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+
+            _logger.LogInformation("Retrieving incident '{id}'.", id);
             var incident = await _incidentService.GetByIdAsync(id);
 
             if (incident == null)
@@ -63,6 +75,8 @@ namespace FireOps.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Incident incident)
         {
+
+            _logger.LogInformation("Updating incident '{id}'.", id);
             var updated = await _incidentService.UpdateAsync(id, incident);
 
             if (!updated)
@@ -74,6 +88,8 @@ namespace FireOps.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+
+            _logger.LogInformation("Deleting incident '{id}'.", id);
             var deleted = await _incidentService.DeleteAsync(id);
 
             if (!deleted)
